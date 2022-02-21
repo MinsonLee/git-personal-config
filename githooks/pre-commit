@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+# 定义受保护的分支的表达式
+protected_branch='master'
+
+# 检查当前推送的远程环境是否为公司仓库项目地址
+strict=$(git remote get-url --push `git remote` | grep -c qeeq.cn)
+
+# 获取当前分支名
+current_branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
+
+# 严谨模式-禁止在保护分支直接 commit 信息
+if [ $strict == 1 ] && [[ "$current_branch" =~ $protected_branch ]]; then
+  echo -e ".git/hooks: Do not commit to protected branch:$current_branch\n"
+  exit 1
+fi
+
+# 使用 gofmt 进行格式化提交的 *.go 文件再提交
+# 检测是否安装 gofmt
+command -v gofmt >/dev/null 2>&1 && {
+    # 获取暂存区中待 commit 的 *.go 文件
+    golang_files=$(git diff --cached --name-only --diff-filter=ACM -- '*.go')
+    for FILE in $files
+    do
+        gofmt -w $FILE
+        echo "格式化："$FILE
+        git add $FILE
+    done
+}
+
+# 最后至关重要！！！
+# 防止上述命令有非成功推出，shell脚本默认返回 $?
+# return 只能用于 function 中
+exit 0

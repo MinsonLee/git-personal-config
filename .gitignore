@@ -1,0 +1,5 @@
+# 忽略 vim 临时文件
+*.swp
+*.swo
+# 忽略 .gitconfig
+.gitconfig

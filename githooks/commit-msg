@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# An example hook script to check the commit log message.
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "commit-msg".
+
+# Uncomment the below to add a Signed-off-by line to the message.
+# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+# hook is more suited to it.
+#
+# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+
+# This example catches duplicate Signed-off-by lines.
+
+# 定义提交日志格式标准
+format_commit_msg="Format of the commit message is as follows: \
+\n\n<type>[(scope>)]: <summary> \
+\n<BLANK LINE> \
+\n[<body>] \
+\n<BLANK LINE> \
+\n[<footer>]"
+
+# 触发时会传入一个参数 `.git/COMMIT_EDITMSG`
+# 获取提交的 commit msg
+commit_msg=$(cat $1)
+
+# 定义提交规范正则匹配
+reg='^(build|chore|ci|docs|style|feat|fix|perf|refactor|test|revert|merge)(\(.+\))?: .{1,150}'
+
+# 匹配是否符合规范
+# gpre -E 按照正则表达式进行匹配
+#      -i 忽略大小写
+#      -q 静默方式执行，即：不产生输出.若 $? 为零值(成功)则走if条件，非零(异常)走else
+if ! cat $1 | grep -Eiq "$reg"
+then
+   echo -e $format_commit_msg
+   exit 1
+fi
+
+# 最后返回 0 值，异常值由各校验模块自行 exit
+exit 0
