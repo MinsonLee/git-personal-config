@@ -8,6 +8,7 @@
     sparsecheckout = true # 开启稀疏检出，可以过滤 pull 规则，只拉取指定文件或目录
     autocrlf = input # Windows 下设置为 false
     hookspath = ~/personal-config/githooks # 定义全局 git hooks 文件目录
+    fileMode = false # 忽略比较 filemod 变更带来的提交(不同系统来回切换，文件的 filemod 会发生变更，只需要切到项目更目录下执行 git config --add core.fileMode false 即可)
 
 [pull]
     rebase = true # pull 操作，优先使用 rebase 方式
