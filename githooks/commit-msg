@@ -30,7 +30,7 @@ format_commit_msg="Format of the commit message is as follows: \
 commit_msg=$(cat $1)
 
 # 定义提交规范正则匹配
-reg='^(build|chore|ci|docs|style|feat|fix|perf|refactor|test|revert|merge)(\(.+\))?: .{1,150}'
+reg='^((build|chore|ci|docs|style|feat|fix|perf|refactor|test|revert)(\(.+\))?:|(merge)).{1,150}'
 
 # 匹配是否符合规范
 # gpre -E 按照正则表达式进行匹配
