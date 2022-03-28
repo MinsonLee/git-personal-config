@@ -27,3 +27,6 @@
 [i18n]
     logOutputEncoding = utf-8 # git log 输出编码
     commitEncoding = utf-8 # git commit 输入编码
+
+[includeIf "gitdir:/tmp/work/"] # 如果在 /tmp/work 目录下的项目，则使用下方 path 路径的配置文件覆盖上述配置
+    path = ~/git/work

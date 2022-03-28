@@ -1,0 +1,5 @@
+[user]
+    name = "limingshuang" # 设置企业用户名
+    email = "limingshuang@work.com" # 设置企业邮箱
+[core]
+    sshCommand = ssh -i ~/.ssh/work #指定 work 使用的密钥
