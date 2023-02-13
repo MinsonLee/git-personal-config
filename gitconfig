@@ -17,6 +17,7 @@
     hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<author:%an%Creset == %C(bold blue)commitor:%cn>%Creset' --abbrev-commit
     ph = !"git rev-parse --abbrev-ref @{u} >/dev/null 2>&1  && git pull $(git remote) $(git symbolic-ref --short -q HEAD) || echo 'no upstream branch'"
     fb = !"git fetch $(git remote) $1:refs/remotes/$(git remote)/$1"
+	sbr = !"for branch in `git branch -r| grep -v HEAD`;do echo -e `git show --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<author:%an%Creset == %C(bold blue)commitor:%cn>%Creset' $branch | head -n 1`; done | sort -r"
 
 [push]
     default = current # 默认推送分支设置
