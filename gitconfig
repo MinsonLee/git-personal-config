@@ -1,14 +1,14 @@
 [user]
-    name = "" # 设置用户名
-    email = "" # 设置邮箱
+    name = MinsonLee
+    email = lms.minsonlee@gmail.com
 
 [core]
     editor = vi # 设置默认编辑器
     autocrlf = false # 关闭自动转换 Windows 和 *nix 系统之间的换行符
     sparsecheckout = true # 开启稀疏检出，可以过滤 pull 规则，只拉取指定文件或目录
-    autocrlf = input # Windows 下设置为 false
+    autocrlf = false # Windows 下设置为 false
     hookspath = ~/personal-config/githooks # 定义全局 git hooks 文件目录
-    fileMode = false # 忽略比较 filemod 变更带来的提交(不同系统来回切换，文件的 filemod 会发生变更，只需要切到项目更目录下执行 git config --add core.fileMode false 即可)
+    fileMode = false
 
 [pull]
     rebase = true # pull 操作，优先使用 rebase 方式
@@ -17,8 +17,7 @@
     hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<author:%an%Creset == %C(bold blue)commitor:%cn>%Creset' --abbrev-commit
     ph = !"git rev-parse --abbrev-ref @{u} >/dev/null 2>&1  && git pull $(git remote) $(git symbolic-ref --short -q HEAD) || echo 'no upstream branch'"
     fb = !"git fetch $(git remote) $1:refs/remotes/$(git remote)/$1"
-	sbr = !"for branch in `git branch -r| grep -v HEAD`;do echo -e `git show --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<author:%an%Creset == %C(bold blue)commitor:%cn>%Creset' $branch | head -n 1`; done | sort -r"
-
+    sbr = !"for branch in `git branch -r| grep -v HEAD`;do echo -e `git show --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<author:%an%Creset == %C(bold blue)commitor:%cn>%Creset' $branch | head -n 1`; done | sort -r"
 [push]
     default = current # 默认推送分支设置
 
@@ -29,5 +28,7 @@
     logOutputEncoding = utf-8 # git log 输出编码
     commitEncoding = utf-8 # git commit 输入编码
 
-[includeIf "gitdir:/tmp/work/"] # 如果在 /tmp/work 目录下的项目，则使用下方 path 路径的配置文件覆盖上述配置
-    path = ~/git/work
+#[includeIf "gitdir:/work/ercp/"] # 如果在 /tmp/work/ 目录下的项目，则使用下方 path 路径的配置文件覆盖上述配置
+#    path = ~/gitconfig/ercp
+[http]
+    sslverify = false
