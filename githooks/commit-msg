@@ -19,7 +19,7 @@
 
 # 定义提交日志格式标准
 format_commit_msg="Format of the commit message is as follows: \
-\n\n<type>[(scope>)]: <summary> \
+\n\n<type>[(<scope>)]: <summary> \
 \n<BLANK LINE> \
 \n[<body>] \
 \n<BLANK LINE> \
@@ -38,7 +38,7 @@ reg='^((build|chore|ci|docs|style|feat|fix|perf|refactor|test|revert)(\(.+\))?:|
 #      -q 静默方式执行，即：不产生输出.若 $? 为零值(成功)则走if条件，非零(异常)走else
 if ! cat $1 | grep -Eiq "$reg"
 then
-   echo -e $format_commit_msg
+   echo "$format_commit_msg\n\n$reg"
    exit 1
 fi
 

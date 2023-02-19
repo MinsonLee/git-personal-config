@@ -16,7 +16,7 @@ strict=$(git remote get-url --push `git remote` | grep -c qeeq.cn)
 current_branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
 
 # 严谨模式-禁止在保护分支直接 commit 信息
-if [ $strict == 1 ] && [[ "$current_branch" =~ $protected_branch ]]; then
+if [ "$strict" = "1" ] && [[ "$current_branch" =~ $protected_branch ]]; then
   echo -e ".git/hooks: Do not commit to protected branch:$current_branch\n"
   exit 1
 fi
