@@ -3,3 +3,5 @@
 *.swo
 # 忽略 .gitconfig
 .gitconfig
+.idea/
+*.iml

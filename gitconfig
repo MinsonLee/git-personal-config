@@ -8,6 +8,7 @@
     sparsecheckout = true # 开启稀疏检出，可以过滤 pull 规则，只拉取指定文件或目录
     autocrlf = false # Windows 下设置为 false
     hookspath = ~/personal-config/githooks # 定义全局 git hooks 文件目录
+    excludesfile = ~/personal-config/.gitignore
     fileMode = false
 
 [pull]
