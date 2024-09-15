@@ -33,3 +33,9 @@
 #    path = ~/gitconfig/ercp
 [http]
     sslverify = false
+
+[init]
+        defaultBranch = main # 默认主分支为 main
+
+[extensions]
+        worktreeConfig = true # 开启 worktree 配置
