@@ -9,7 +9,7 @@
     autocrlf = false # Windows 下设置为 false
     hookspath = ~/personal-config/githooks # 定义全局 git hooks 文件目录
     excludesfile = ~/personal-config/.gitignore
-    fileMode = false
+    fileMode = false # 文件权限变更，不追踪
 
 [pull]
     rebase = true # pull 操作，优先使用 rebase 方式
