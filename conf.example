@@ -1,0 +1,4 @@
+GIT_USER=
+GIT_EMAIL=
+# 设置 gitalias.txt 文件路径
+#GIT_ALIAS="/data/git/gitalias.txt"

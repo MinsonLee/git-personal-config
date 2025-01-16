@@ -5,6 +5,3 @@
 .gitconfig
 .idea/
 *.iml
-# 特殊文件
-gitalias.txt
-conf

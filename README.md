@@ -1,28 +1,23 @@
 # hooks
 My personal configs and hooks
 
-## 如何拉取代码
+## 1、拉取代码
 
 ```sh
-git clone git@github.com:MinsonLee/personal-config.git ~/personal-config
-
-# 或者
-git clone git@gitee.com:minson-lee/personal-config.git ~/personal-config
+git clone https://github.com/MinsonLee/personal-config.git ~/personal-config
 ```
 
-## 拉取代码之后的操作
+## 2、填写配置信息
 
-1. 拉取代码之后，请将 `gitconfig` 文件复制一份到 ~/.gitconfig 下 `cp
-   ~/personal-config/gitconfig ~/.gitconfig`
-2. 配置 Git 用户名和邮箱
+1. 复制项目目录下的 conf.example 为 conf 文件
 
 ```sh
-git config --global user.name "MinsonLee"
-git config --global user.email "lms.minsonlee@gmail.com"
+cp ./conf.example ./conf
 ```
 
-## 变更日志
+2. 编辑 conf 文件，填写你的 Git 用户名/邮箱
+3. 执行 `./install.sh`
 
-Date | Doc
----- | ---
-2022-02-17 | 存储 gitconfig 和 githooks 文件
+## 附录
+
+1. 开源 git alias 配置项目：[GitAlias/gitalias: Git alias commands for faster easier version control](https://github.com/GitAlias/gitalias)

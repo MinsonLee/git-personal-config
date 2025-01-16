@@ -1,14 +1,13 @@
 [user]
-    name = MinsonLee
-    email = lms.minsonlee@gmail.com
-
+    name=
+    email=
 [core]
     editor = vi # 设置默认编辑器
     autocrlf = false # 关闭自动转换 Windows 和 *nix 系统之间的换行符
     sparsecheckout = true # 开启稀疏检出，可以过滤 pull 规则，只拉取指定文件或目录
     autocrlf = false # Windows 下设置为 false
-    hookspath = ~/personal-config/githooks # 定义全局 git hooks 文件目录
-    excludesfile = ~/personal-config/.gitignore
+    hookspath = PERSONAL_CONFIG_GIT_DIR/githooks # 定义全局 git hooks 文件目录
+    excludesfile = PERSONAL_CONFIG_GIT_DIR/gitignore # 定义全局的 .gitignore 忽略文件
     fileMode = false # 文件权限变更，不追踪
 
 [pull]
@@ -29,13 +28,15 @@
     logOutputEncoding = utf-8 # git log 输出编码
     commitEncoding = utf-8 # git commit 输入编码
 
-#[includeIf "gitdir:/work/ercp/"] # 如果在 /tmp/work/ 目录下的项目，则使用下方 path 路径的配置文件覆盖上述配置
-#    path = ~/gitconfig/ercp
 [http]
     sslverify = false
 
 [init]
-        defaultBranch = main # 默认主分支为 main
+    defaultBranch = main # 默认主分支为 main
 
 [extensions]
-        worktreeConfig = true # 开启 worktree 配置
+    worktreeConfig = true # 开启 worktree 配置
+
+# 如果在 /work/ 目录下的项目，则使用下方 path 路径的配置文件覆盖上述配置
+#[includeIf "gitdir:/work/"] 
+#    path = ~/gitconfig/work
