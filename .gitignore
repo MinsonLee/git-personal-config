@@ -6,5 +6,5 @@
 .idea/
 *.iml
 # 特殊文件
-gitalias.txt
+*alias.txt
 conf

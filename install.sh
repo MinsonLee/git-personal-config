@@ -66,21 +66,33 @@ git config --global core.excludesfile "$DIR/gitignore"
 if [ -z "$GIT_ALIAS" ];then
     GIT_ALIAS="$DIR/gitalias.txt"
 fi
-# 判断创建 gitalias.txt 目录
+# 判断创建 gitalias 目录
 GIT_ALIAS_DIR=$(dirname $(readlink -f "$GIT_ALIAS"))
 if [ -d "$GIT_ALIAS_DIR" ];then
     mkdir -p "$GIT_ALIAS_DIR"
 fi
+
 # 下载 gitalias.txt
 curl -s "https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt" -o "$GIT_ALIAS"
 # 配置
 if test -f "$GIT_ALIAS";then
     echo -e "下载 $GIT_ALIAS 成功\n"
-    git config --global include.path "$GIT_ALIAS"
+    git config --global --add include.path "$GIT_ALIAS"
 else
     echo -e "下载 $GIT_ALIAS 失败...\n"
 fi
 
+# 下载 git-paging-alias.txt
+GIT_PAGING_ALIAS="$GIT_ALIAS_DIR/git-paging-alias.txt"
+curl -s "https://raw.githubusercontent.com/MinsonLee/git-paging/refs/heads/master/git-paging-alias.txt" \
+    -o "$GIT_PAGING_ALIAS";
+# 配置
+if test -f "$GIT_PAGING_ALIAS";then
+    echo -e "下载 $GIT_PAGING_ALIAS 成功\n"
+    git config --global --add include.path "$GIT_PAGING_ALIAS";
+else
+    echo -e "下载 $GIT_PAGING_ALIAS 失败...\n"
+fi
 
 # 格式化一下 $HOME/.gitconfig
 sed -i -e 's/^[ \t]\{1,\}/    /g' "$HOME/.gitconfig"
